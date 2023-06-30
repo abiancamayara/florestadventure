@@ -8,12 +8,17 @@ public class Player : MonoBehaviour
     public float speed;
     public float jumpForce;
 
+    public GameObject bow;
+    public Transform firepoint;
+
     private Rigidbody2D rig;
     private Animator anim;
     
     private bool isJumping;
     private bool doubleJump;
     private bool isFire;
+
+    private float movement;
     
     // Start is called before the first frame update
     void Start()
@@ -25,9 +30,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Mover();
         Jump();
         BowFire();
+    }
+
+    private void FixedUpdate()
+    {
+        Mover();
     }
 
     void Mover()
@@ -94,6 +103,18 @@ public class Player : MonoBehaviour
         {
             isFire = true;
             anim.SetInteger("transition", 3);
+            GameObject Bow = Instantiate(bow, firepoint.position, firepoint.rotation);
+
+            if (transform.rotation.y == 0)
+            {
+                Bow.GetComponent<bow>().isRight = true;
+            }
+
+            if (transform.rotation.y == 180)
+            {
+                Bow.GetComponent<bow>().isRight = false;
+            }
+            
             yield return new WaitForSeconds(0.28f);
             anim.SetInteger("transition", 0);
             isFire = false;
