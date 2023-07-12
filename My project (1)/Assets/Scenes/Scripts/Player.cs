@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int health; 
+    public int health = 3;
     public float speed;
     public float jumpForce;
 
@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     {
         rig = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        
+        GameController.instance.UpdateLives(health);
     }
 
     // Update is called once per frame
@@ -122,7 +124,28 @@ public class Player : MonoBehaviour
 
         }
     }
-    
+
+    public void Damage(int dmg)
+    {
+        health -= dmg;
+        GameController.instance.UpdateLives(health);
+        anim.SetTrigger("hit");
+        
+        if (transform.rotation.y == 0)
+        {
+            transform.position += new Vector3(-0.5f, 0, 0);
+        }
+
+        if (transform.rotation.y == 180)
+        {
+            transform.position += new Vector3(0.5f, 0, 0);
+        }
+        
+        if (health <= 0)
+        {
+            
+        }
+    }
     
 
     void OnCollisionEnter2D(Collision2D coll)
