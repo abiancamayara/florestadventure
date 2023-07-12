@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public int health; 
     public float speed;
     public float jumpForce;
 
@@ -121,6 +122,8 @@ public class Player : MonoBehaviour
 
         }
     }
+    
+    
 
     void OnCollisionEnter2D(Collision2D coll)
     {
