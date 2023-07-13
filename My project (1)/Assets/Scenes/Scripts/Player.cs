@@ -21,10 +21,16 @@ public class Player : MonoBehaviour
     private bool isFire;
 
     private float movement;
+    
+    public Vector3 posInicial; 
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        posInicial = new Vector3(-9, -3, 0);
+        transform.position = posInicial;
+    
         rig = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         
@@ -155,6 +161,7 @@ public class Player : MonoBehaviour
         }
     }
     
+     
     
 
     void OnCollisionEnter2D(Collision2D coll)
