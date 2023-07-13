@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -20,7 +21,7 @@ public class Player : MonoBehaviour
     private bool isFire;
 
     private float movement;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +48,7 @@ public class Player : MonoBehaviour
         float movement = Input.GetAxis("Horizontal");
         rig.velocity = new Vector2(movement * speed, rig.velocity.y);
 
+        
         if (movement > 0)
         {
             if (!isJumping)
@@ -68,6 +70,12 @@ public class Player : MonoBehaviour
         {
             anim.SetInteger("transition", 0);
         }
+    }
+
+    public void IncreaseLife(int value)
+    {
+        health += value;
+        GameController.instance.UpdateLives(health);
     }
 
     void Jump()
@@ -146,6 +154,7 @@ public class Player : MonoBehaviour
             
         }
     }
+    
     
 
     void OnCollisionEnter2D(Collision2D coll)
