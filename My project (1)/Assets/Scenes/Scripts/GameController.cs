@@ -10,7 +10,11 @@ public class GameController : MonoBehaviour
     public int score;
     public TMPro.TextMeshProUGUI scoreText;
 
+    public GameObject pauseObj;
+
     public int totalScore;
+
+    private bool isPaused;
 
     public static GameController instance;
     
@@ -18,13 +22,14 @@ public class GameController : MonoBehaviour
     void Awake()
     {
         instance = this;
+        pauseObj.SetActive(false);
         totalScore = PlayerPrefs.GetInt("score", score + totalScore);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        PauseGame();
     }
 
     public void UpdateScore(int value)
@@ -38,5 +43,24 @@ public class GameController : MonoBehaviour
     public void UpdateLives(int value)
     {
         healthText.text = "x " + value.ToString();
+    }
+
+    public void PauseGame()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            isPaused = !isPaused;
+            pauseObj.SetActive(isPaused);
+        }
+
+        if (isPaused)
+        {
+            Time.timeScale = 0f;
+        }
+
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
 }
