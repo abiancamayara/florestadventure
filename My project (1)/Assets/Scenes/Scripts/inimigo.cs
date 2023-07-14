@@ -9,6 +9,7 @@ public class inimigo : MonoBehaviour
     private bool walkRight = true;
 
     public int health;
+    public int damage;
     
     private float timer;
 
@@ -54,6 +55,14 @@ public class inimigo : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<Player>().Damage(damage);
         }
     }
 }
