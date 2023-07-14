@@ -157,7 +157,7 @@ public class Player : MonoBehaviour
         
         if (health <= 0)
         {
-            
+            GameController.instance.GameOver();
         }
     }
     
