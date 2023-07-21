@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     private bool doubleJump;
     private bool isFire;
 
+    public AudioSource tiro;
+
     private float movement;
     
     public Vector3 posInicial; 
@@ -121,6 +123,7 @@ public class Player : MonoBehaviour
             isFire = true;
             anim.SetInteger("transition", 3);
             GameObject Bow = Instantiate(bow, firepoint.position, firepoint.rotation);
+            tiro.Play();
 
             if (transform.rotation.y == 0)
             {
