@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
         {
             isFire = true;
             anim.SetInteger("transition", 3);
-            GameObject Bow = Instantiate(bow, firepoint.position, firepoint.rotation);
+           /* GameObject Bow = Instantiate(bow, firepoint.position, firepoint.rotation);
             tiro.Play();
 
             if (transform.rotation.y == 0)
@@ -134,8 +134,8 @@ public class Player : MonoBehaviour
             {
                 Bow.GetComponent<bow>().isRight = false;
             }
-            
-            yield return new WaitForSeconds(0.28f);
+            */
+            yield return new WaitForSeconds(1f);
             anim.SetInteger("transition", 0);
             isFire = false;
 
