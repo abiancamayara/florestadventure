@@ -24,7 +24,11 @@ public class Player : MonoBehaviour
 
     private float movement;
     
-    public Vector3 posInicial; 
+    public Vector3 posInicial;
+
+    public AudioSource AudioJump;
+    public AudioSource AudioWalk;
+    public AudioSource AudioAttack;
     
 
     // Start is called before the first frame update
@@ -62,6 +66,7 @@ public class Player : MonoBehaviour
             if (!isJumping)
             {
                 anim.SetInteger("transition", 1);
+                AudioWalk.Play();
             }
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
@@ -70,6 +75,7 @@ public class Player : MonoBehaviour
             if (!isJumping)
             {
                 anim.SetInteger("transition", 1);
+                AudioWalk.Play();
             }
             transform.eulerAngles = new Vector3(0, 180, 0);
         }
@@ -96,6 +102,7 @@ public class Player : MonoBehaviour
                 rig.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
                 doubleJump = true;
                 isJumping = true;
+                AudioJump.Play();
             }
             else
             {
@@ -122,6 +129,7 @@ public class Player : MonoBehaviour
         {
             isFire = true;
             anim.SetInteger("transition", 3);
+            AudioAttack.Play();
            /* GameObject Bow = Instantiate(bow, firepoint.position, firepoint.rotation);
             tiro.Play();
 
